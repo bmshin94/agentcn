@@ -17,13 +17,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { SITE_NAV_SECTIONS } from "@/constants/nav";
-import type { SiteNavLink as SiteNavLinkItem } from "@/constants/nav";
+import { LABS_NAV_SECTIONS } from "@/constants/nav";
+import type { LabsNavLink as LabsNavLinkItem } from "@/constants/nav";
 import { UTM_PARAMS } from "@/constants/site";
 import { addQueryParams } from "@/lib/url";
 import { cn } from "@/lib/utils";
 
-type SectionId = (typeof SITE_NAV_SECTIONS)[number]["id"];
+type SectionId = (typeof LABS_NAV_SECTIONS)[number]["id"];
 
 const SECTION_WIDTH: Partial<Record<SectionId, string>> = {
   registries: "w-72",
@@ -56,12 +56,12 @@ const ExternalLinkLabel = ({
   </>
 );
 
-const SiteNavLink = ({
+const LabsNavLink = ({
   item,
   iconSize = 16,
   children,
 }: {
-  item: SiteNavLinkItem;
+  item: LabsNavLinkItem;
   iconSize?: number;
   children: (props: { label: React.ReactNode }) => React.ReactNode;
 }) =>
@@ -76,7 +76,7 @@ const DesktopSection = ({
   listClassName,
 }: {
   title: string;
-  items: readonly SiteNavLinkItem[];
+  items: readonly LabsNavLinkItem[];
   className?: string;
   listClassName?: string;
 }) => (
@@ -85,7 +85,7 @@ const DesktopSection = ({
     <ul className={cn("columns-1 gap-1", listClassName)}>
       {items.map((item) => (
         <li key={item.href} className="w-full break-inside-avoid">
-          <SiteNavLink item={item}>
+          <LabsNavLink item={item}>
             {({ label }) => (
               <NavigationMenuLink
                 href={addQueryParams(item.href, UTM_PARAMS)}
@@ -102,7 +102,7 @@ const DesktopSection = ({
                 {label}
               </NavigationMenuLink>
             )}
-          </SiteNavLink>
+          </LabsNavLink>
         </li>
       ))}
     </ul>
@@ -139,12 +139,12 @@ const LabsNavMobile = () => {
         sideOffset={14}
       >
         <div className="flex flex-col gap-12 overflow-auto px-6 py-6">
-          {SITE_NAV_SECTIONS.map((section) => (
+          {LABS_NAV_SECTIONS.map((section) => (
             <div key={section.id} className="flex flex-col gap-4">
               <SectionTitle>{section.title}</SectionTitle>
               <div className="flex flex-col gap-3">
                 {section.items.map((item) => (
-                  <SiteNavLink key={item.href} item={item} iconSize={24}>
+                  <LabsNavLink key={item.href} item={item} iconSize={24}>
                     {({ label }) => (
                       <a
                         target="_blank"
@@ -156,7 +156,7 @@ const LabsNavMobile = () => {
                         {label}
                       </a>
                     )}
-                  </SiteNavLink>
+                  </LabsNavLink>
                 ))}
               </div>
             </div>
@@ -210,7 +210,7 @@ const LabsNavDesktop = () => {
             >
               <div className="container-wrapper px-6">
                 <div className="flex gap-8 py-4 pl-3">
-                  {SITE_NAV_SECTIONS.map((section) => (
+                  {LABS_NAV_SECTIONS.map((section) => (
                     <DesktopSection
                       key={section.id}
                       title={section.title}

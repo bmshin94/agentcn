@@ -199,6 +199,7 @@ const LabsNavMobile = () => {
           size="sm"
           className="gap-1 text-base hover:bg-transparent focus-visible:bg-transparent data-[state=open]:bg-transparent dark:hover:bg-transparent"
         >
+          {SITE.NAME}
           <ChevronDownIcon
             className={cn(
               "size-3 transition-transform duration-200",
